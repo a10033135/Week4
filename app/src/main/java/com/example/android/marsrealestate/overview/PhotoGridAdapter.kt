@@ -22,7 +22,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.marsrealestate.databinding.GridViewItemBinding
+import com.example.android.marsrealestate.databinding.LinearViewItemBinding
 import com.example.android.marsrealestate.network.MarsProperty
 
 /**
@@ -31,29 +31,18 @@ import com.example.android.marsrealestate.network.MarsProperty
  * @param onClick a lambda that takes the
  */
 
-class PhotoLinearAdapter : RecyclerView.Adapter<MarsProperty>(){
-
-    var data = listOf<MarsProperty>()
-
-
-
-}
-
-
-
 class PhotoGridAdapter( val onClickListener: OnClickListener ) :
         ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
     /**
      * The MarsPropertyViewHolder constructor takes the binding variable from the associated
      * GridViewItem, which nicely gives it access to the full [MarsProperty] information.
      */
-    class MarsPropertyViewHolder(private var binding: GridViewItemBinding):
+    class MarsPropertyViewHolder(private var binding: LinearViewItemBinding):
             RecyclerView.ViewHolder(binding.root) {
         fun bind(marsProperty: MarsProperty) {
             binding.property = marsProperty
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
-            binding.executePendingBindings()
         }
     }
 
@@ -76,7 +65,7 @@ class PhotoGridAdapter( val onClickListener: OnClickListener ) :
      */
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): MarsPropertyViewHolder {
-        return MarsPropertyViewHolder(GridViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return MarsPropertyViewHolder(LinearViewItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     /**
